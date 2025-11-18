@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA 2.0 | Unit 9</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <hr />
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/finals/exam3.html">Exam</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2>Unit 9: File Structures</h2>
+
+      <h3>1. Basic Concepts</h3>
+      <p>
+        File structures define how data is organized, stored, and accessed on
+        secondary storage. Efficient file structures reduce access time and
+        optimize storage utilization.
+      </p>
+
+      <h3>2. Sequential File Organization</h3>
+      <p>
+        Records are stored one after another in sequence.
+        <br /><strong>Advantages:</strong> Simple, efficient for batch
+        processing. <br /><strong>Disadvantages:</strong> Slow for random
+        access.
+      </p>
+
+      <h3>3. Direct (Random) File Organization</h3>
+      <p>
+        Records are accessed directly using a key or address.
+        <br /><strong>Advantages:</strong> Fast random access. <br /><strong
+          >Disadvantages:</strong
+        >
+        Requires hashing or indexing.
+      </p>
+
+      <h3>4. Indexed File Organization</h3>
+      <p>
+        Uses an index to map keys to record locations.
+        <br /><strong>Advantages:</strong> Efficient for both sequential and
+        random access. <br /><strong>Applications:</strong> Database systems,
+        search engines.
+      </p>
+
+      <h3>5. B-Trees and B+ Trees</h3>
+      <p>
+        Balanced tree structures used in file systems and databases.
+        <br /><strong>B-Tree:</strong> Stores keys and data in all nodes.
+        <br /><strong>B+ Tree:</strong> Stores data only in leaf nodes, with
+        linked leaves for fast sequential access. <br /><strong
+          >Complexity:</strong
+        >
+        O(log n) for search, insert, delete.
+      </p>
+
+      <h3>6. Applications</h3>
+      <ul>
+        <li>Database indexing and query optimization.</li>
+        <li>File system organization in operating systems.</li>
+        <li>Efficient storage and retrieval in large datasets.</li>
+      </ul>
+    </section>
+
+    <div class="pagination">
+      <a href="/Components/textbook/book.html">INDEX</a>
+      <a href="/Components/textbook/unit1.html">1</a>
+      <a href="/Components/textbook/unit2.html">2</a>
+      <a href="/Components/textbook/unit3.html">3</a>
+      <a href="/Components/textbook/unit4.html">4</a>
+      <a href="/Components/textbook/unit5.html">5</a>
+      <a href="/Components/textbook/unit6.html">6</a>
+      <a href="/Components/textbook/unit7.html">7</a>
+      <a href="/Components/textbook/unit8.html">8</a>
+      <a href="/Components/textbook/unit9.html" class="active">9</a>
+      <a href="/Components/textbook/unit10.html">10</a>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

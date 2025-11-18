@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CODING IN DSA | NOTES</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <hr />
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/finals/exam3.html">Exam</a>
+      </nav>
+    </header>
+
+    <section>
+      <h1>DSA 2.0 NOTES (Cheat-Sheet)</h1>
+
+      <!-- Example format for each unit -->
+      <h2>Unit 1: Introduction</h2>
+      <p>
+        <strong>Core Idea:</strong> Data structures = organized storage. ADTs
+        define operations. Classified as linear/non-linear, static/dynamic.
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Complexity classes → O(1), O(log n), O(n),
+        O(n²).
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> Always distinguish ADT vs implementation
+        (e.g., Stack ADT vs array/linked list implementation).
+      </p>
+
+      <h2>Unit 2: Strings & Pattern Matching</h2>
+      <p>
+        <strong>Core Idea:</strong> Strings stored fixed/variable/linked. Ops:
+        substring, concat. Matching: naive vs table-driven.
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Naive matching worst case O(n·m). KMP
+        improves to O(n+m).
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> Know difference between storage methods
+        (fixed vs linked) for memory efficiency.
+      </p>
+
+      <h2>Unit 3: Arrays & Pointers</h2>
+      <p>
+        <strong>Core Idea:</strong> Traversals, insert/delete, matrix ops,
+        bubble sort O(n²), binary search O(log n).
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Binary search recurrence → T(n) = T(n/2) +
+        O(1).
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> Multidimensional arrays = row-major vs
+        column-major storage.
+      </p>
+
+      <h2>Unit 4: Linked Lists</h2>
+      <p>
+        <strong>Core Idea:</strong> Dynamic nodes linked by pointers.
+        Insert/delete at head/middle/end. Header lists: grounded vs circular.
+      </p>
+      <p><strong>Key Formula:</strong> Traversal complexity O(n).</p>
+      <p>
+        <strong>Exam Tip:</strong> Circular lists simplify queue implementation.
+      </p>
+
+      <h2>Unit 5: Stacks & Queues</h2>
+      <p>
+        <strong>Core Idea:</strong> Stack = LIFO, Queue = FIFO. Variants:
+        circular, deque, priority.
+      </p>
+      <p><strong>Key Formula:</strong> Push/Pop O(1), Enqueue/Dequeue O(1).</p>
+      <p><strong>Exam Tip:</strong> Recursion uses stack implicitly.</p>
+
+      <h2>Unit 6: Trees</h2>
+      <p>
+        <strong>Core Idea:</strong> Rooted hierarchy. Traversals: preorder,
+        inorder, postorder. BST ops O(log n).
+      </p>
+      <p><strong>Key Formula:</strong> Height of balanced BST ≈ log₂(n).</p>
+      <p><strong>Exam Tip:</strong> Inorder traversal of BST = sorted order.</p>
+
+      <h2>Unit 7: Graphs</h2>
+      <p>
+        <strong>Core Idea:</strong> Vertices + edges. BFS/DFS O(V+E). Shortest
+        paths: Dijkstra, Bellman-Ford, Floyd-Warshall.
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Dijkstra complexity O((V+E) log V) with
+        heap.
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> BFS finds shortest path in unweighted graphs.
+      </p>
+
+      <h2>Unit 8: Sorting & Searching</h2>
+      <p>
+        <strong>Core Idea:</strong> Merge O(n log n), Quick avg O(n log n),
+        Hashing O(1).
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Quick sort worst case O(n²), best case O(n
+        log n).
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> Hash collisions resolved via chaining or open
+        addressing.
+      </p>
+
+      <h2>Unit 9: AVL Trees</h2>
+      <p>
+        <strong>Core Idea:</strong> Balanced BSTs with rotations (LL, RR, LR,
+        RL). Insert/delete with rebalancing.
+      </p>
+      <p>
+        <strong>Key Formula:</strong> Balance factor = height(left) -
+        height(right).
+      </p>
+      <p>
+        <strong>Exam Tip:</strong> AVL ensures O(log n) search even in worst
+        case.
+      </p>
+
+      <h2>Unit 10: Warshall’s Algorithm & Shortest Path</h2>
+      <p>
+        <strong>Core Idea:</strong> Warshall builds path matrix. Shortest path
+        algorithms applied to weighted graphs/digraphs.
+      </p>
+      <p><strong>Key Formula:</strong> Floyd-Warshall complexity O(n³).</p>
+      <p>
+        <strong>Exam Tip:</strong> Warshall is transitive closure, not shortest
+        path.
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exam 3 — Final Boss Replica</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Minimal local styles (safe defaults). Use styles.css for full theming */
+      :root {
+        --ink: #0f172a;
+        --muted: #64748b;
+        --accent: #2563eb;
+        --border: #e2e8f0;
+        --bg: #ffffff;
+        --chip: #f8fafc;
+      }
+      body {
+        font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        margin: 0;
+      }
+      header,
+      footer {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border);
+        background: #fff;
+      }
+      header h1 {
+        margin: 0 0 4px;
+        font-size: 20px;
+      }
+      header .meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .section {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin: 16px 0;
+        overflow: hidden;
+        background: #fff;
+      }
+      .section header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .section header h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .marks {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .block {
+        padding: 16px;
+        border-top: 1px dashed var(--border);
+      }
+      .block h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+      }
+      .q {
+        margin: 10px 0;
+        padding: 10px;
+        background: var(--chip);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+      .q label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .options {
+        display: grid;
+        gap: 6px;
+      }
+      .options label {
+        font-weight: 500;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .controls {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      button {
+        padding: 10px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: #fff;
+        cursor: pointer;
+      }
+      button.primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .chip {
+        display: inline-block;
+        padding: 4px 8px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .flex {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .muted {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+       <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/finals/exam3.html">Exam</a>
+      </nav>
+    </header>
+    <hr>
+    <header>
+      <h1>Data Structures and Algorithms — Exam 3 (Final Boss Replica)</h1>
+      <div class="meta">
+        <span class="chip">Duration: 2 hours</span>
+        <span class="chip">Total: 120 marks</span>
+        <span class="chip">Answer all questions</span>
+        <span id="timer" class="chip">Timer: 02:00:00</span>
+      </div>
+    </header>
+
+    <main
+      id="exam"
+      data-exam-id="dsa-exam3"
+      data-total-marks="120"
+      data-sections="A,B,C"
+    >
+      <!-- Controls -->
+      <div class="controls">
+        <button id="startTimer" class="primary">Start timer</button>
+        <button id="stopTimer">Stop timer</button>
+        <button id="resetExam">Reset</button>
+        <button id="exportAnswers">Export answers (JSON)</button>
+        <button id="toggleAnswers">Toggle memo</button>
+      </div>
+
+      <!-- SECTION A: THEORY [40] -->
+      <section class="section" id="section-a" data-weight="40">
+        <header>
+          <!-- <button onclick="gradeExam()">Grade Section A</button> -->
+
+          <h2>Section A: Theory</h2>
+          <span class="marks">[40]</span>
+        </header>
+
+        <!-- Question 1: True/False [10] -->
+        <div class="block" id="q1" data-type="truefalse" data-marks="10">
+          <h3>Question 1 — True/False</h3>
+
+          <div class="q" data-id="1.1" data-mark="1">
+            <label>1.1 A queue inserts and removes from the same end.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_1" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_1" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: False — Queue is FIFO (enqueue rear, dequeue front).
+            </div>
+          </div>
+
+          <div class="q" data-id="1.2" data-mark="1">
+            <label>1.2 Binary search works best on unsorted data.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_2" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_2" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: False — Requires sorted data.
+            </div>
+          </div>
+
+          <div class="q" data-id="1.3" data-mark="1">
+            <label
+              >1.3 In post-order traversal, the root is visited first.</label
+            >
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_3" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_3" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: False — Post-order: Left, Right, Root.
+            </div>
+          </div>
+
+          <div class="q" data-id="1.4" data-mark="1">
+            <label>1.4 A stack follows the LIFO principle.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_4" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_4" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: True.</div>
+          </div>
+
+          <div class="q" data-id="1.5" data-mark="1">
+            <label>1.5 An AVL tree is self-balancing.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_5" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_5" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: True.</div>
+          </div>
+
+          <div class="q" data-id="1.6" data-mark="1">
+            <label>1.6 Graphs can be traversed using BFS and DFS.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_6" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_6" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: True.</div>
+          </div>
+
+          <div class="q" data-id="1.7" data-mark="1">
+            <label>1.7 Arrays are fixed in size.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_7" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_7" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: Generally True (static arrays).
+            </div>
+          </div>
+
+          <div class="q" data-id="1.8" data-mark="1">
+            <label>1.8 Hashing reduces search time.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_8" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_8" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: True (average-case O(1)).
+            </div>
+          </div>
+
+          <div class="q" data-id="1.9" data-mark="1">
+            <label>1.9 Linked lists allocate memory dynamically.</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_9" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_9" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: True.</div>
+          </div>
+
+          <div class="q" data-id="1.10" data-mark="1">
+            <label
+              >1.10 Circular queues have a fixed rear and front pointer.</label
+            >
+            <div class="options">
+              <label
+                ><input type="radio" name="q1_10" value="True" /> True</label
+              >
+              <label
+                ><input type="radio" name="q1_10" value="False" /> False</label
+              >
+            </div>
+            <div class="memo muted" hidden>
+              Answer: False — they wrap around.
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2: Matching [10] -->
+        <div class="block" id="q2" data-type="matching" data-marks="10">
+          <h3>Question 2 — Matching</h3>
+          <div class="grid-2">
+            <div>
+              <div class="q" data-id="2.1" data-mark="1">
+                <label>2.1 Stack</label
+                ><input type="text" name="q2_1" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.2" data-mark="1">
+                <label>2.2 AVL Tree</label
+                ><input type="text" name="q2_2" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.3" data-mark="1">
+                <label>2.3 Pre-order Traversal</label
+                ><input type="text" name="q2_3" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.4" data-mark="1">
+                <label>2.4 Queue</label
+                ><input type="text" name="q2_4" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.5" data-mark="1">
+                <label>2.5 Depth-First Search</label
+                ><input type="text" name="q2_5" placeholder="A–J" />
+              </div>
+            </div>
+            <div>
+              <div class="q" data-id="2.6" data-mark="1">
+                <label>2.6 Hash Function</label
+                ><input type="text" name="q2_6" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.7" data-mark="1">
+                <label>2.7 Linear Array</label
+                ><input type="text" name="q2_7" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.8" data-mark="1">
+                <label>2.8 Binary Search Tree</label
+                ><input type="text" name="q2_8" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.9" data-mark="1">
+                <label>2.9 Graph</label
+                ><input type="text" name="q2_9" placeholder="A–J" />
+              </div>
+              <div class="q" data-id="2.10" data-mark="1">
+                <label>2.10 Linked List</label
+                ><input type="text" name="q2_10" placeholder="A–J" />
+              </div>
+            </div>
+          </div>
+          <details class="memo muted" hidden>
+            <summary>Memo (letters)</summary>
+            D, C, A, E, G, H, F, H (BST), I, J
+          </details>
+        </div>
+
+        <!-- Question 3: Fill-in-the-blanks [10] -->
+        <div class="block" id="q3" data-type="fillblank" data-marks="10">
+          <h3>Question 3 — Fill in the blanks</h3>
+          <div class="q" data-id="3.1" data-mark="1">
+            <label
+              >3.1 ______ linked list’s last node links back to the first
+              node.</label
+            ><input type="text" name="q3_1" />
+          </div>
+          <div class="q" data-id="3.2" data-mark="1">
+            <label>3.2 ______ structure is used in recursion.</label
+            ><input type="text" name="q3_2" />
+          </div>
+          <div class="q" data-id="3.3" data-mark="1">
+            <label>3.3 ______ traversal visits left, root, right.</label
+            ><input type="text" name="q3_3" />
+          </div>
+          <div class="q" data-id="3.4" data-mark="1">
+            <label>3.4 ______ sort repeatedly swaps adjacent elements.</label
+            ><input type="text" name="q3_4" />
+          </div>
+          <div class="q" data-id="3.5" data-mark="1">
+            <label>3.5 ______ algorithm finds the shortest path.</label
+            ><input type="text" name="q3_5" />
+          </div>
+          <div class="q" data-id="3.6" data-mark="1">
+            <label>3.6 AVL trees are balanced using ______ factors.</label
+            ><input type="text" name="q3_6" />
+          </div>
+          <div class="q" data-id="3.7" data-mark="1">
+            <label
+              >3.7 The ______ pointer indicates the beginning of a linked
+              list.</label
+            ><input type="text" name="q3_7" />
+          </div>
+          <div class="q" data-id="3.8" data-mark="1">
+            <label
+              >3.8 ______ operation rearranges items in a specific order.</label
+            ><input type="text" name="q3_8" />
+          </div>
+          <div class="q" data-id="3.9" data-mark="1">
+            <label
+              >3.9 A ______ allows quick insertion/removal at both ends.</label
+            ><input type="text" name="q3_9" />
+          </div>
+          <div class="q" data-id="3.10" data-mark="1">
+            <label
+              >3.10 Strings stored in ______ form have character + pointer
+              cells.</label
+            ><input type="text" name="q3_10" />
+          </div>
+
+          <details class="memo muted" hidden>
+            <summary>Memo (keywords)</summary>
+            Circular; Stack; In-order; Bubble; Dijkstra (or Floyd–Warshall for
+            transitive closure); Balance; Head; Sorting; Deque; Linked (array of
+            pointers / rope structure).
+          </details>
+        </div>
+
+        <!-- Question 4: MCQ [10] -->
+        <div class="block" id="q4" data-type="mcq" data-marks="10">
+          <h3>Question 4 — Multiple choice</h3>
+
+          <div class="q" data-id="4.1" data-mark="1">
+            <label>4.1 Which of the following is a non-linear structure?</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_1" value="A" /> A Array</label
+              >
+              <label
+                ><input type="radio" name="q4_1" value="B" /> B Stack</label
+              >
+              <label
+                ><input type="radio" name="q4_1" value="C" /> C Linked
+                List</label
+              >
+              <label
+                ><input type="radio" name="q4_1" value="D" /> D Graph</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: D — Graph.</div>
+          </div>
+
+          <div class="q" data-id="4.2" data-mark="1">
+            <label>4.2 Best case complexity of Binary Search is:</label>
+            <div class="options">
+              <label><input type="radio" name="q4_2" value="A" /> A O(n)</label>
+              <label><input type="radio" name="q4_2" value="B" /> B O(1)</label>
+              <label
+                ><input type="radio" name="q4_2" value="C" /> C O(log n)</label
+              >
+              <label
+                ><input type="radio" name="q4_2" value="D" /> D O(n log
+                n)</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: B — O(1).</div>
+          </div>
+
+          <div class="q" data-id="4.3" data-mark="1">
+            <label>4.3 A stable sorting algorithm:</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_3" value="A" /> A Quick
+                Sort</label
+              >
+              <label
+                ><input type="radio" name="q4_3" value="B" /> B Heap Sort</label
+              >
+              <label
+                ><input type="radio" name="q4_3" value="C" /> C Bubble
+                Sort</label
+              >
+              <label
+                ><input type="radio" name="q4_3" value="D" /> D Selection
+                Sort</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: C — Bubble Sort.</div>
+          </div>
+
+          <div class="q" data-id="4.4" data-mark="1">
+            <label>4.4 In-order traversal of a BST gives:</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_4" value="A" /> A Sorted
+                values</label
+              >
+              <label
+                ><input type="radio" name="q4_4" value="B" /> B
+                Post-order</label
+              >
+              <label
+                ><input type="radio" name="q4_4" value="C" /> C Random
+                order</label
+              >
+              <label
+                ><input type="radio" name="q4_4" value="D" /> D Pre-order</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: A — Sorted values.</div>
+          </div>
+
+          <div class="q" data-id="4.5" data-mark="1">
+            <label>4.5 NULL pointer in a linked list means:</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_5" value="A" /> A Start of
+                list</label
+              >
+              <label
+                ><input type="radio" name="q4_5" value="B" /> B Middle</label
+              >
+              <label><input type="radio" name="q4_5" value="C" /> C End</label>
+              <label
+                ><input type="radio" name="q4_5" value="D" /> D Header
+                node</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: C — End.</div>
+          </div>
+
+          <div class="q" data-id="4.6" data-mark="1">
+            <label
+              >4.6 Which operation adds an element to the top of a stack?</label
+            >
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_6" value="A" /> A Append</label
+              >
+              <label><input type="radio" name="q4_6" value="B" /> B Push</label>
+              <label><input type="radio" name="q4_6" value="C" /> C Pop</label>
+              <label
+                ><input type="radio" name="q4_6" value="D" /> D Enqueue</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: B — Push.</div>
+          </div>
+
+          <div class="q" data-id="4.7" data-mark="1">
+            <label>4.7 Worst-case time complexity of linear search:</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_7" value="A" /> A O(log n)</label
+              >
+              <label
+                ><input type="radio" name="q4_7" value="B" /> B O(n log
+                n)</label
+              >
+              <label><input type="radio" name="q4_7" value="C" /> C O(n)</label>
+              <label><input type="radio" name="q4_7" value="D" /> D O(1)</label>
+            </div>
+            <div class="memo muted" hidden>Answer: C — O(n).</div>
+          </div>
+
+          <div class="q" data-id="4.8" data-mark="1">
+            <label>4.8 Which data structure is used for BFS traversal?</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_8" value="A" /> A Stack</label
+              >
+              <label
+                ><input type="radio" name="q4_8" value="B" /> B Queue</label
+              >
+              <label
+                ><input type="radio" name="q4_8" value="C" /> C Array</label
+              >
+              <label><input type="radio" name="q4_8" value="D" /> D Heap</label>
+            </div>
+            <div class="memo muted" hidden>Answer: B — Queue.</div>
+          </div>
+
+          <div class="q" data-id="4.9" data-mark="1">
+            <label
+              >4.9 AVL imbalance in right subtree of right child uses:</label
+            >
+            <div class="options">
+              <label><input type="radio" name="q4_9" value="A" /> A LL</label>
+              <label><input type="radio" name="q4_9" value="B" /> B LR</label>
+              <label><input type="radio" name="q4_9" value="C" /> C RR</label>
+              <label><input type="radio" name="q4_9" value="D" /> D RL</label>
+            </div>
+            <div class="memo muted" hidden>Answer: C — RR.</div>
+          </div>
+
+          <div class="q" data-id="4.10" data-mark="1">
+            <label>4.10 Post-order traversal outputs:</label>
+            <div class="options">
+              <label
+                ><input type="radio" name="q4_10" value="A" /> A Left, Root,
+                Right</label
+              >
+              <label
+                ><input type="radio" name="q4_10" value="B" /> B Right, Root,
+                Left</label
+              >
+              <label
+                ><input type="radio" name="q4_10" value="C" /> C Left, Right,
+                Root</label
+              >
+              <label
+                ><input type="radio" name="q4_10" value="D" /> D Root, Left,
+                Right</label
+              >
+            </div>
+            <div class="memo muted" hidden>Answer: C — Left, Right, Root.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION B: PSEUDOCODE [40] -->
+      <section class="section" id="section-b" data-weight="40">
+        <header>
+          <h2>Section B: Pseudocode</h2>
+          <span class="marks">[40]</span>
+        </header>
+
+        <div class="block" id="q5" data-type="pseudocode" data-marks="40">
+          <h3>
+            Question 5 — Write complete textbook pseudocode (include
+            RETURN/EXIT)
+          </h3>
+
+          <div class="q" data-id="5.1" data-mark="10">
+            <label>5.1 Insert an element into a sorted linked list.</label>
+            <textarea
+              name="q5_1"
+              rows="8"
+              placeholder="Pseudocode..."
+            ></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              Initialize prev ← NULL, curr ← head; traverse while curr and
+              curr.info < x; insert node between prev and curr; handle head
+              insert; RETURN head.
+            </details>
+          </div>
+
+          <div class="q" data-id="5.2" data-mark="10">
+            <label>5.2 Bubble Sort using A = [5, 3, 4, 1].</label>
+            <textarea
+              name="q5_2"
+              rows="8"
+              placeholder="Pseudocode..."
+            ></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              For i from 0 to n-2: swapped ← false; for j from 0 to n-2-i: if
+              A[j] > A[j+1] swap; if swapped = false break; RETURN A.
+            </details>
+          </div>
+
+          <div class="q" data-id="5.3" data-mark="10">
+            <label>5.3 Warshall’s algorithm for path matrix.</label>
+            <textarea
+              name="q5_3"
+              rows="8"
+              placeholder="Pseudocode..."
+            ></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              For k: for i: for j: P[i][j] ← P[i][j] OR (P[i][k] AND P[k][j]);
+              RETURN P.
+            </details>
+          </div>
+
+          <div class="q" data-id="5.4" data-mark="10">
+            <label>5.4 Stack Push and Pop operations.</label>
+            <textarea
+              name="q5_4"
+              rows="8"
+              placeholder="Pseudocode..."
+            ></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              Push: if top = max-1 then OVERFLOW else top++, S[top] ← x; Pop: if
+              top = -1 then UNDERFLOW else x ← S[top], top--, RETURN x.
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION C: EXPLANATIONS [40] -->
+      <section class="section" id="section-c" data-weight="40">
+        <header>
+          <h2>Section C: Explanations</h2>
+          <span class="marks">[40]</span>
+        </header>
+
+        <div class="block" id="q6" data-type="explanations" data-marks="40">
+          <h3>Question 6 — Explain clearly, use examples/diagrams if needed</h3>
+
+          <div class="q" data-id="6.1" data-mark="10">
+            <label
+              >6.1 Compare stack and queue (operations, order, real-world
+              uses).</label
+            >
+            <textarea name="q6_1" rows="6" placeholder="Answer..."></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              Stack: LIFO, push/pop; Queue: FIFO, enqueue/dequeue; Uses: call
+              stack vs printer queue; complexity O(1) ops.
+            </details>
+          </div>
+
+          <div class="q" data-id="6.2" data-mark="10">
+            <label
+              >6.2 Explain DFS vs BFS with diagrams and practical
+              differences.</label
+            >
+            <textarea name="q6_2" rows="6" placeholder="Answer..."></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              DFS uses stack/recursion, explores deep; BFS uses queue, explores
+              level-order; shortest path in unweighted graphs via BFS.
+            </details>
+          </div>
+
+          <div class="q" data-id="6.3" data-mark="10">
+            <label>6.3 AVL insertion and four rotations.</label>
+            <textarea name="q6_3" rows="6" placeholder="Answer..."></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              Cases: LL, RR, LR, RL; balance factor ∈ {−1,0,1}; rotate at first
+              unbalanced ancestor after insertion.
+            </details>
+          </div>
+
+          <div class="q" data-id="6.4" data-mark="10">
+            <label
+              >6.4 Arrays vs linked lists vs binary trees (structure, access,
+              memory).</label
+            >
+            <textarea name="q6_4" rows="6" placeholder="Answer..."></textarea>
+            <details class="memo muted" hidden>
+              <summary>Memo</summary>
+              Array: contiguous, O(1) index; Linked list: nodes + pointers, O(n)
+              access, dynamic; Tree: hierarchical, balanced search O(log n).
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Totals -->
+      <div class="controls">
+        <span class="chip">Section A: 40</span>
+        <span class="chip">Section B: 40</span>
+        <span class="chip">Section C: 40</span>
+        <span class="chip">Grand Total: 120</span>
+      </div>
+    </main>
+
+    <footer>
+      <div class="flex">
+        <span class="muted">DSA 2.0 Archive — Exam3.html</span>
+        <span class="chip">Version: 1.0</span>
+        <span class="chip">Last updated: Today</span>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+      // Minimal JS hooks – use main.js for full functionality
+      const timerEl = document.getElementById("timer");
+      const startBtn = document.getElementById("startTimer");
+      const stopBtn = document.getElementById("stopTimer");
+      const resetBtn = document.getElementById("resetExam");
+      const exportBtn = document.getElementById("exportAnswers");
+      const toggleMemoBtn = document.getElementById("toggleAnswers");
+
+      let timer = { running: false, remaining: 2 * 60 * 60, interval: null };
+
+      function formatTime(s) {
+        const h = Math.floor(s / 3600);
+        const m = Math.floor((s % 3600) / 60);
+        const sec = s % 60;
+        return `${String(h).padStart(2, "0")}:${String(m).padStart(
+          2,
+          "0"
+        )}:${String(sec).padStart(2, "0")}`;
+      }
+
+      function tick() {
+        if (timer.remaining > 0) {
+          timer.remaining--;
+          timerEl.textContent = `Timer: ${formatTime(timer.remaining)}`;
+        } else {
+          clearInterval(timer.interval);
+          timer.running = false;
+          alert("Time up!");
+        }
+      }
+
+      startBtn.onclick = () => {
+        if (!timer.running) {
+          timer.running = true;
+          timer.interval = setInterval(tick, 1000);
+        }
+      };
+      stopBtn.onclick = () => {
+        clearInterval(timer.interval);
+        timer.running = false;
+      };
+      resetBtn.onclick = () => {
+        document
+          .querySelectorAll('input[type="radio"]')
+          .forEach((i) => (i.checked = false));
+        document
+          .querySelectorAll('input[type="text"]')
+          .forEach((i) => (i.value = ""));
+        document.querySelectorAll("textarea").forEach((t) => (t.value = ""));
+        timer.remaining = 2 * 60 * 60;
+        timerEl.textContent = `Timer: ${formatTime(timer.remaining)}`;
+      };
+      exportBtn.onclick = () => {
+        const data = {};
+        document.querySelectorAll(".q").forEach((q) => {
+          const id = q.dataset.id;
+          const radios = q.querySelectorAll('input[type="radio"]');
+          const text = q.querySelector('input[type="text"], textarea');
+          if (radios.length) {
+            const checked = Array.from(radios).find((r) => r.checked);
+            data[id] = checked ? checked.value : null;
+          } else if (text) {
+            data[id] = text.value.trim();
+          } else {
+            data[id] = null;
+          }
+        });
+        const blob = new Blob([JSON.stringify(data, null, 2)], {
+          type: "application/json",
+        });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "exam3_answers.json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+      };
+      toggleMemoBtn.onclick = () => {
+        document.querySelectorAll(".memo").forEach((m) => {
+          m.hidden = !m.hidden;
+        });
+      };
+    </script>
+  </body>
+</html>

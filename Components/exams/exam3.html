@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CODING IN DSA | Exam 3 (Final Boss)</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/finals/exam3.html">Exam</a>
+      </nav>
+      <button id="exam3ToggleBtn">Hide Exam3 Questions</button>
+    </header>
+
+    <section>
+      <h1>Final Boss Exam (120 Marks)</h1>
+      <form id="exam3Form">
+        <!-- Section A: MCQ -->
+        <h2>Section A: Multiple Choice</h2>
+        <div class="question">
+          <p>1. Which traversal of BST gives sorted order?</p>
+          <label><input type="radio" name="mcq1" value="a" /> Preorder</label>
+          <label><input type="radio" name="mcq1" value="b" /> Postorder</label>
+          <label><input type="radio" name="mcq1" value="c" /> Inorder</label>
+          <label
+            ><input type="radio" name="mcq1" value="d" /> Level order</label
+          >
+        </div>
+        <div class="question">
+          <p>2. Quick Sort average-case time complexity?</p>
+          <label><input type="radio" name="mcq2" value="a" /> O(n²)</label>
+          <label><input type="radio" name="mcq2" value="b" /> O(n log n)</label>
+          <label><input type="radio" name="mcq2" value="c" /> O(log n)</label>
+          <label><input type="radio" name="mcq2" value="d" /> O(1)</label>
+        </div>
+
+        <!-- Section B: True / False -->
+        <h2>Section B: True / False</h2>
+        <div class="question">
+          <p>3. Hashing guarantees O(1) lookup in the worst case.</p>
+          <label><input type="radio" name="tf1" value="T" /> True</label>
+          <label><input type="radio" name="tf1" value="F" /> False</label>
+        </div>
+        <div class="question">
+          <p>4. BFS can be used to find shortest paths in unweighted graphs.</p>
+          <label><input type="radio" name="tf2" value="T" /> True</label>
+          <label><input type="radio" name="tf2" value="F" /> False</label>
+        </div>
+
+        <!-- Section C: Matching Columns -->
+        <h2>Section C: Match the columns</h2>
+        <p>Match each structure with its property (enter letter A–D):</p>
+        <div class="question">
+          <p>5. Stack →</p>
+          <input type="text" name="match1" placeholder="A–D" />
+        </div>
+        <div class="question">
+          <p>6. Queue →</p>
+          <input type="text" name="match2" placeholder="A–D" />
+        </div>
+        <div class="question">
+          <p>7. BST →</p>
+          <input type="text" name="match3" placeholder="A–D" />
+        </div>
+        <div class="question">
+          <p>8. Hash table →</p>
+          <input type="text" name="match4" placeholder="A–D" />
+        </div>
+        <div class="question" style="border: 1px dashed #ccc">
+          <p><strong>Column B:</strong></p>
+          <p>A: FIFO ordering</p>
+          <p>B: Average O(1) lookup</p>
+          <p>C: LIFO ordering</p>
+          <p>D: Inorder gives sorted</p>
+        </div>
+
+        <!-- Section D: Complete the sentence (Fill-in) -->
+        <h2>Section D: Complete the sentence</h2>
+        <div class="question">
+          <p>
+            9. The balance factor in an AVL tree is defined as height(_____) −
+            height(_____).
+          </p>
+          <input type="text" name="fill1" placeholder="blank 1, blank 2" />
+        </div>
+        <div class="question">
+          <p>
+            10. Dijkstra’s algorithm uses a ______ to select the next closest
+            vertex.
+          </p>
+          <input type="text" name="fill2" placeholder="data structure" />
+        </div>
+
+        <!-- Section E: Give a description (Short answers) -->
+        <h2>Section E: Give a description</h2>
+        <div class="question">
+          <p>11. Briefly describe how KMP improves naive pattern matching.</p>
+          <textarea
+            name="desc1"
+            rows="4"
+            placeholder="2–3 sentences"
+          ></textarea>
+        </div>
+        <div class="question">
+          <p>
+            12. Explain why balanced trees maintain efficient operations
+            compared to skewed trees.
+          </p>
+          <textarea
+            name="desc2"
+            rows="4"
+            placeholder="2–3 sentences"
+          ></textarea>
+        </div>
+
+        <button type="submit">Submit Final Boss</button>
+      </form>
+
+      <div id="result"></div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
+    </footer>
+
+    <script src="/quiz3.js"></script>
+  </body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DSA 2.0 — Final Boss Exam 3</title>
+
+    <style>
+      :root {
+        --bg: #0f1220;
+        --card: #161a2e;
+        --text: #e8ebff;
+        --muted: #a9b0d9;
+        --accent: #6cf;
+        --accent-2: #9f7aea;
+        --border: #2a3052;
+        --success: #4ade80;
+        --warning: #facc15;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        --sans: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans";
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header.sticky {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 18, 32, 0.95),
+          rgba(15, 18, 32, 0.78)
+        );
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      .head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+        padding: 16px 24px;
+      }
+      .title {
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .chip {
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.85rem;
+      }
+      .accent2 {
+        color: var(--accent-2);
+      }
+      nav.quick {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 8px 24px 16px;
+      }
+      nav.quick a {
+        text-decoration: none;
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 10px;
+      }
+      nav.quick a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      button {
+        background: var(--card);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+        margin: 16px 0;
+      }
+      .card h2 {
+        margin: 0 0 8px;
+      }
+      .meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      .grid {
+        display: grid;
+        gap: 12px;
+      }
+      .grid.cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid.cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .q {
+        border: 1px dashed var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .q .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0;
+        border: 0;
+      }
+      .q .label {
+        font-weight: 600;
+      }
+      .q .marks {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .ans-box {
+        margin-top: 8px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        min-height: 48px;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      textarea.ans-box {
+        width: 100%;
+        resize: vertical;
+      }
+      .mono {
+        font-family: var(--mono);
+      }
+
+      .seal {
+        text-align: center;
+        margin: 24px 0;
+        padding: 12px;
+        color: var(--accent-2);
+        border-top: 1px solid var(--border);
+      }
+
+      @media print {
+        header.sticky,
+        nav.quick,
+        .controls,
+        .chip.hide-print {
+          display: none !important;
+        }
+        .card {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        body {
+          background: #fff;
+          color: #000;
+        }
+        .card,
+        .q,
+        .ans-box {
+          border-color: #ccc;
+          background: #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="sticky">
+      <div class="head">
+        <div>
+          <div class="title">
+            DSA 2.0 — Exam 3 <span class="muted">Final Boss Edition</span>
+          </div>
+          <div class="row">
+            <span class="chip"
+              >Marks: <strong id="total-marks">100</strong></span
+            >
+            <span class="chip">Duration: 2 Hours</span>
+            <span class="chip"
+              >Status:
+              <span id="seal-status" class="accent2">Unsealed</span></span
+            >
+            <span class="chip hide-print"
+              >Dark mode:
+              <label style="display: inline-flex; align-items: center; gap: 8px"
+                ><input id="darkToggle" type="checkbox" checked />
+                <span class="muted">On</span></label
+              ></span
+            >
+          </div>
+        </div>
+        <div class="controls">
+          <button id="toggleAll">Collapse/Expand</button>
+          <button onclick="window.print()">Print / Save PDF</button>
+          <button id="sealBtn">Seal Exam</button>
+        </div>
+      </div>
+      <nav class="quick">
+        <a href="#sec-a">Section A</a>
+        <a href="#sec-b">Section B</a>
+        <a href="#sec-c">Section C</a>
+        <a href="#sec-d">Section D</a>
+        <a href="#sec-e">Section E</a>
+      </nav>
+      <button id="finalToggleBtn">Hide Final Exam Questions</button>
+    </header>
+
+    <main class="wrap">
+      <section class="card" id="exam-header">
+        <h2>Official exam header</h2>
+        <div class="meta">
+          <span>Course: Data Structures & Algorithms</span>
+          <span>Exam: 3</span>
+          <span>Term: Final</span>
+          <span>Total marks: 100</span>
+        </div>
+        <div class="grid cols-2">
+          <div class="q">
+            <div class="head"><span class="label">Instructions</span></div>
+            <ul>
+              <li>Answer all questions. Read marks per item.</li>
+              <li>Show working for algorithm/design questions.</li>
+              <li>Use provided spaces for answers. No reordering.</li>
+            </ul>
+          </div>
+          <div class="q">
+            <div class="head"><span class="label">Candidate info</span></div>
+            <div class="grid cols-2">
+              <label>
+                <span class="muted">Name</span>
+                <input
+                  type="text"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border-radius: 8px;
+                    border: 1px solid var(--border);
+                    background: rgba(0, 0, 0, 0.15);
+                    color: var(--text);
+                  "
+                />
+              </label>
+              <label>
+                <span class="muted">Student ID</span>
+                <input
+                  type="text"
+                  style="
+                    width: 100%;
+                    padding: 8px;
+                    border-radius: 8px;
+                    border: 1px solid var(--border);
+                    background: rgba(0, 0, 0, 0.15);
+                    color: var(--text);
+                  "
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section A: Multiple Choice (20 marks) -->
+      <section class="card page-break" id="sec-a" data-collapsible>
+        <h2>Section A: Multiple Choice</h2>
+        <div class="meta">
+          <span>10 questions</span>
+          <span>2 marks each</span>
+          <span>Section total: <strong class="section-total">20</strong></span>
+        </div>
+
+        <div class="grid cols-2">
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >A1. Which traversal of a BST yields keys in sorted order?</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a1" /> Preorder</label>
+            <label><input type="radio" name="a1" /> Postorder</label>
+            <label><input type="radio" name="a1" /> Inorder</label>
+            <label><input type="radio" name="a1" /> Level order</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >A2. Average time complexity of Quick Sort?</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a2" /> O(n²)</label>
+            <label><input type="radio" name="a2" /> O(n log n)</label>
+            <label><input type="radio" name="a2" /> O(log n)</label>
+            <label><input type="radio" name="a2" /> O(1)</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >A3. Hash table collisions are commonly handled by:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a3" /> Open addressing</label>
+            <label><input type="radio" name="a3" /> Chaining</label>
+            <label><input type="radio" name="a3" /> Both</label>
+            <label><input type="radio" name="a3" /> Neither</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >A4. A complete binary tree of height h has at most:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a4" /> 2h nodes</label>
+            <label><input type="radio" name="a4" /> h² nodes</label>
+            <label><input type="radio" name="a4" /> 2^(h+1) − 1 nodes</label>
+            <label><input type="radio" name="a4" /> h log h nodes</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A5. Stable sort guarantees:</span
+              ><span class="marks">2</span>
+            </div>
+            <label
+              ><input type="radio" name="a5" /> Preserves equal keys
+              order</label
+            >
+            <label><input type="radio" name="a5" /> Minimizes swaps</label>
+            <label><input type="radio" name="a5" /> In-place sorting</label>
+            <label><input type="radio" name="a5" /> O(n) sorting</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A6. In a min-heap, the parent is:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a6" /> ≥ children</label>
+            <label><input type="radio" name="a6" /> ≤ children</label>
+            <label><input type="radio" name="a6" /> Random</label>
+            <label><input type="radio" name="a6" /> Unrelated</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A7. Amortized O(1) push is typical for:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a7" /> Dynamic array</label>
+            <label><input type="radio" name="a7" /> Linked list</label>
+            <label><input type="radio" name="a7" /> BST</label>
+            <label><input type="radio" name="a7" /> B-tree</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A8. BFS finds shortest paths in:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a8" /> Weighted graphs</label>
+            <label><input type="radio" name="a8" /> Unweighted graphs</label>
+            <label><input type="radio" name="a8" /> DAGs only</label>
+            <label><input type="radio" name="a8" /> Trees only</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A9. KMP achieves linear time by:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a9" /> Randomization</label>
+            <label
+              ><input type="radio" name="a9" /> Fallback table (prefix
+              function)</label
+            >
+            <label><input type="radio" name="a9" /> Divide & Conquer</label>
+            <label><input type="radio" name="a9" /> Hashing</label>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">A10. AVL rotations maintain:</span
+              ><span class="marks">2</span>
+            </div>
+            <label><input type="radio" name="a10" /> Heap property</label>
+            <label
+              ><input type="radio" name="a10" /> Balance factor bounds</label
+            >
+            <label><input type="radio" name="a10" /> Hash invariants</label>
+            <label><input type="radio" name="a10" /> Queue order</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section B: True/False (10 marks) -->
+      <section class="card page-break" id="sec-b" data-collapsible>
+        <h2>Section B: True / False</h2>
+        <div class="meta">
+          <span>10 statements</span>
+          <span>1 mark each</span>
+          <span>Section total: <strong class="section-total">10</strong></span>
+        </div>
+
+        <div class="grid cols-2">
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B1. Hashing guarantees O(1) lookup in the worst case.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b1" /> True</label>
+            <label><input type="radio" name="b1" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B2. BFS can find shortest paths in unweighted graphs.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b2" /> True</label>
+            <label><input type="radio" name="b2" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B3. A binary search tree’s inorder traversal yields sorted
+                keys.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b3" /> True</label>
+            <label><input type="radio" name="b3" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label">B4. Merge Sort is in-place by default.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b4" /> True</label>
+            <label><input type="radio" name="b4" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B5. A min-heap’s minimum element is at the root.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b5" /> True</label>
+            <label><input type="radio" name="b5" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B6. KMP’s failure table is built from the pattern.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b6" /> True</label>
+            <label><input type="radio" name="b6" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B7. Dijkstra’s algorithm works with negative edge
+                weights.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b7" /> True</label>
+            <label><input type="radio" name="b7" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label">B8. A queue is LIFO.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b8" /> True</label>
+            <label><input type="radio" name="b8" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B9. Red-Black trees enforce additional color invariants.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b9" /> True</label>
+            <label><input type="radio" name="b9" /> False</label>
+          </div>
+
+          <div class="q" data-marks="1">
+            <div class="head">
+              <span class="label"
+                >B10. Open addressing uses linked lists in buckets.</span
+              ><span class="marks">1</span>
+            </div>
+            <label><input type="radio" name="b10" /> True</label>
+            <label><input type="radio" name="b10" /> False</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section C: Matching (20 marks) -->
+      <section class="card page-break" id="sec-c" data-collapsible>
+        <h2>Section C: Match the columns</h2>
+        <div class="meta">
+          <span>5 items</span>
+          <span>4 marks each</span>
+          <span>Section total: <strong class="section-total">20</strong></span>
+        </div>
+
+        <div class="grid cols-2">
+          <div class="q" data-marks="4">
+            <div class="head">
+              <span class="label">C1. Match each structure to its property</span
+              ><span class="marks">4</span>
+            </div>
+            <div class="grid cols-2">
+              <div>
+                <ol>
+                  <li>Stack</li>
+                  <li>Queue</li>
+                  <li>BST</li>
+                  <li>Hash table</li>
+                </ol>
+              </div>
+              <div>
+                <ul>
+                  <li>A: FIFO ordering</li>
+                  <li>B: Average O(1) lookup</li>
+                  <li>C: LIFO ordering</li>
+                  <li>D: Inorder gives sorted</li>
+                </ul>
+              </div>
+            </div>
+            <div
+              class="ans-box"
+              contenteditable="true"
+              aria-label="Answer e.g., 1-C, 2-A, 3-D, 4-B"
+            ></div>
+          </div>
+
+          <div class="q" data-marks="4">
+            <div class="head">
+              <span class="label">C2. Trees to properties</span
+              ><span class="marks">4</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="4">
+            <div class="head">
+              <span class="label">C3. Graph concepts</span
+              ><span class="marks">4</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="4">
+            <div class="head">
+              <span class="label">C4. Sorting algorithms</span
+              ><span class="marks">4</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="4">
+            <div class="head">
+              <span class="label">C5. Complexity classes</span
+              ><span class="marks">4</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section D: Fill in the blanks (20 marks) -->
+      <section class="card page-break" id="sec-d" data-collapsible>
+        <h2>Section D: Complete the sentence</h2>
+        <div class="meta">
+          <span>10 items</span>
+          <span>2 marks each</span>
+          <span>Section total: <strong class="section-total">20</strong></span>
+        </div>
+
+        <div class="grid cols-2">
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D1. The balance factor in an AVL tree is height(_____) −
+                height(_____).</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D2. Dijkstra’s algorithm uses a ______ to select the next
+                closest vertex.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D3. In a hash table, the load factor is ______.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D4. A topological order exists only for ______ graphs.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D5. The height of a complete binary tree with n nodes is
+                approximately ______.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D6. In KMP, the prefix function π[i] equals the length of the
+                ______.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D7. Red-Black trees ensure the longest path is at most ______
+                times the shortest path.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">D8. BFS uses a ______ data structure.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label"
+                >D9. Heap insert has time complexity ______ (worst case).</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+          <div class="q" data-marks="2">
+            <div class="head">
+              <span class="label">D10. A stable sort preserves ______.</span
+              ><span class="marks">2</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section E: Short descriptions (30 marks) -->
+      <section class="card page-break" id="sec-e" data-collapsible>
+        <h2>Section E: Give a description</h2>
+        <div class="meta">
+          <span>3 questions</span>
+          <span>10 marks each</span>
+          <span>Section total: <strong class="section-total">30</strong></span>
+        </div>
+
+        <div class="grid">
+          <div class="q" data-marks="10">
+            <div class="head">
+              <span class="label"
+                >E1. Briefly describe how KMP improves naive pattern matching
+                (2–3 sentences).</span
+              ><span class="marks">10</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+
+          <div class="q" data-marks="10">
+            <div class="head">
+              <span class="label"
+                >E2. Explain why balanced trees maintain efficient operations
+                compared to skewed trees (2–3 sentences).</span
+              ><span class="marks">10</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+          </div>
+
+          <div class="q" data-marks="10">
+            <div class="head">
+              <span class="label"
+                >E3. Outline an algorithm to detect cycles in a directed graph
+                and its complexity.</span
+              ><span class="marks">10</span>
+            </div>
+            <div class="ans-box" contenteditable="true"></div>
+            <pre class="ans-box mono" contenteditable="true">
+// Pseudocode (DFS with color marks)
+function hasCycle(G):
+  n = number of vertices
+  color = array[0..n-1] filled with WHITE
+  for v in 0..n-1:
+    if color[v] == WHITE and dfs(v): return true
+  return false
+
+function dfs(u):
+  color[u] = GREY
+  for each v in adj[u]:
+    if color[v] == GREY: return true
+    if color[v] == WHITE and dfs(v): return true
+  color[u] = BLACK
+  return false
+</pre
+            >
+          </div>
+        </div>
+      </section>
+
+      <footer class="seal">
+        <strong>Final Boss Exam 3 — Trilogy Complete</strong><br />
+        Archive sealed: DSA 2.0 Legacy Hub
+      </footer>
+    </main>
+
+    <script>
+      // Auto-number labels A..E by DOM order
+      function autoNumber() {
+        const sections = [
+          { id: "sec-a", prefix: "A" },
+          { id: "sec-b", prefix: "B" },
+          { id: "sec-c", prefix: "C" },
+          { id: "sec-d", prefix: "D" },
+          { id: "sec-e", prefix: "E" },
+        ];
+        sections.forEach(({ id, prefix }) => {
+          const sec = document.getElementById(id);
+          if (!sec) return;
+          const qs = Array.from(sec.querySelectorAll(".q"));
+          qs.forEach((q, i) => {
+            const label = q.querySelector(".label");
+            if (!label) return;
+            const text = label.textContent.replace(/^([A-E]\d+)\.\s*/, "");
+            label.textContent = `${prefix}${i + 1}. ${text}`;
+          });
+        });
+      }
+
+      // Compute section totals and overall total
+      function computeMarks() {
+        let total = 0;
+        document.querySelectorAll("section.card").forEach((sec) => {
+          const items = Array.from(sec.querySelectorAll(".q"));
+          const secTotal = items.reduce(
+            (sum, q) => sum + (Number(q.dataset.marks) || 0),
+            0
+          );
+          const target = sec.querySelector(".section-total");
+          if (target) target.textContent = secTotal;
+          total += secTotal;
+        });
+        document.getElementById("total-marks").textContent = total;
+        return total;
+      }
+
+      // Collapse/expand sections
+      let collapsed = false;
+      function toggleSections(force) {
+        const next = typeof force === "boolean" ? force : !collapsed;
+        document.querySelectorAll("[data-collapsible]").forEach((sec) => {
+          sec.style.maxHeight = next ? "3.5rem" : "";
+          sec.style.overflow = next ? "hidden" : "";
+        });
+        collapsed = next;
+      }
+
+      // Seal logic: require total = 100
+      function sealExam() {
+        const total = computeMarks();
+        const status = document.getElementById("seal-status");
+        if (total !== 100) {
+          status.textContent = `Needs review (marks = ${total})`;
+          status.style.color = getComputedStyle(
+            document.documentElement
+          ).getPropertyValue("--warning");
+          alert(`Marks total is ${total}. Adjust to 100 before sealing.`);
+          return;
+        }
+        status.textContent = "Sealed";
+        status.style.color = getComputedStyle(
+          document.documentElement
+        ).getPropertyValue("--success");
+        document.getElementById("sealBtn").disabled = true;
+        document.getElementById("sealBtn").textContent = "Sealed";
+      }
+
+      // Dark mode toggle (visual only)
+      document.getElementById("darkToggle")?.addEventListener("change", (e) => {
+        document.body.style.filter = e.target.checked
+          ? "none"
+          : "invert(1) hue-rotate(180deg)";
+      });
+
+      // Controls
+      document
+        .getElementById("toggleAll")
+        .addEventListener("click", () => toggleSections());
+      document.getElementById("sealBtn").addEventListener("click", sealExam);
+
+      // Init
+      autoNumber();
+      computeMarks();
+    </script>
+  </body>
+</html>
