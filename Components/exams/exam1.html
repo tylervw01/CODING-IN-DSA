@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam 1 — Replica</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <hr />
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/exams/exam1.html">Exam 1</a>
+        <a href="/Components/exams/exam2.html">Exam 2 </a> |
+        <a href="/Components/finals/exam3.html">Exam1(Grading)</a> |
+      </nav>
+    </header>
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS — Exam 1 (Replica)</h1>
+      <p>Duration: 2 hours | Total: 120 marks</p>
+      <button onclick="startTimer()">Start timer</button>
+      <button onclick="stopTimer()">Stop timer</button>
+      <button onclick="resetTimer()">Reset</button>
+      <div id="timer">02:00:00</div>
+    </header>
+
+    <section>
+      <h2>Section A: True/False [40]</h2>
+      <ol>
+        <li>
+          A queue inserts and removes from the same end. <br />Answer:
+          <span class="memo"
+            >False — Queue is FIFO (front remove, rear insert).</span
+          >
+        </li>
+        <li>
+          Binary search works best on unsorted data. <br />Answer:
+          <span class="memo">False — requires sorted data.</span>
+        </li>
+        <li>
+          In post-order traversal, the root is visited first. <br />Answer:
+          <span class="memo">False — root is visited last.</span>
+        </li>
+        <li>
+          A stack follows the LIFO principle. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          An AVL tree is self-balancing. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Graphs can be traversed using BFS and DFS. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Arrays are fixed in size. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Hashing reduces search time. <br />Answer:
+          <span class="memo">True — average O(1).</span>
+        </li>
+        <li>
+          Linked lists allocate memory dynamically. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Circular queues have a fixed rear and front pointer. <br />Answer:
+          <span class="memo">False — they wrap around.</span>
+        </li>
+      </ol>
+
+      <h2>Section B: Pseudocode [40]</h2>
+      <ol>
+        <li>
+          Pattern matching (naive). <br />Answer:
+          <span class="memo"
+            >FOR i=1..n-m+1 → Compare substring → Return index if match.</span
+          >
+        </li>
+        <li>
+          Traverse singly linked list. <br />Answer:
+          <span class="memo"
+            >Start at head → While node ≠ NULL → Process → Move next.</span
+          >
+        </li>
+        <li>
+          Stack Push operation. <br />Answer:
+          <span class="memo">Check overflow → Top++ → Insert item.</span>
+        </li>
+        <li>
+          Stack Pop operation. <br />Answer:
+          <span class="memo">Check underflow → Item = Top → Top--.</span>
+        </li>
+        <li>
+          Linear array traversal. <br />Answer:
+          <span class="memo">For i=L..U → Process(A[i]).</span>
+        </li>
+        <li>
+          Binary search. <br />Answer:
+          <span class="memo"
+            >Mid=(low+high)/2 → Compare → Adjust bounds → Repeat.</span
+          >
+        </li>
+        <li>
+          Bubble sort. <br />Answer:
+          <span class="memo">Swap adjacent until sorted.</span>
+        </li>
+        <li>
+          Merge sort. <br />Answer:
+          <span class="memo">Divide → Conquer → Merge.</span>
+        </li>
+      </ol>
+
+      <h2>Section C: Explanations [40]</h2>
+      <ol>
+        <li>
+          Compare stack and queue. <br />Answer:
+          <span class="memo"
+            >Stack=LIFO (Undo ops); Queue=FIFO (Printer jobs).</span
+          >
+        </li>
+        <li>
+          DFS vs BFS. <br />Answer:
+          <span class="memo"
+            >DFS uses stack/recursion, depth-first; BFS uses queue,
+            level-order.</span
+          >
+        </li>
+        <li>
+          AVL insertion and rotations. <br />Answer:
+          <span class="memo">LL, RR, LR, RL rotations rebalance tree.</span>
+        </li>
+        <li>
+          Arrays vs linked lists vs trees. <br />Answer:
+          <span class="memo"
+            >Arrays fixed, fast access; Linked lists dynamic; Trees
+            hierarchical, efficient search.</span
+          >
+        </li>
+        <li>
+          Hashing vs searching. <br />Answer:
+          <span class="memo"
+            >Hashing O(1) avg; Searching O(log n) or O(n).</span
+          >
+        </li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Timer logic
+      let timerInterval;
+      let totalSeconds = 7200; // 2 hours
+
+      function startTimer() {
+        if (!timerInterval) {
+          timerInterval = setInterval(updateTimer, 1000);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      function resetTimer() {
+        stopTimer();
+        totalSeconds = 7200;
+        document.getElementById("timer").textContent = formatTime(totalSeconds);
+      }
+
+      function updateTimer() {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          document.getElementById("timer").textContent =
+            formatTime(totalSeconds);
+        } else {
+          stopTimer();
+          alert("Time's up!");
+        }
+      }
+
+      function formatTime(seconds) {
+        let h = Math.floor(seconds / 3600);
+        let m = Math.floor((seconds % 3600) / 60);
+        let s = seconds % 60;
+        return `${String(h).padStart(2, "0")}:${String(m).padStart(
+          2,
+          "0"
+        )}:${String(s).padStart(2, "0")}`;
+      }
+    </script>
+  </body>
+</html>

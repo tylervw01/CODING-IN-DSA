@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam 2 — Replica</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <hr />
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS</h1>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/Components/textbook/book.html">Textbook</a> |
+        <a href="/Components/notes/note.html">Notes</a> |
+        <a href="/Components/flashcards/cards.html">Flashcards</a> |
+        <a href="/Components/quiz/quiz.html">Quiz</a> |
+        <a href="/Components/exams/exam1.html">Exam 1</a>
+        <a href="/Components/exams/exam2.html">Exam 2 </a> |
+        <a href="/Components/finals/exam3.html">Exam1(Grading)</a> |
+      </nav>
+    </header>
+
+    <header>
+      <h1>DATA STRUCTURES & ALGORITHMS — Exam 2 (Replica)</h1>
+      <p>Duration: 2 hours | Total: 120 marks</p>
+      <button onclick="startTimer()">Start timer</button>
+      <button onclick="stopTimer()">Stop timer</button>
+      <button onclick="resetTimer()">Reset</button>
+      <div id="timer">02:00:00</div>
+    </header>
+
+    <section>
+      <h2>Section A: True/False [40]</h2>
+      <ol>
+        <li>
+          Stacks follow FIFO principle. <br />Answer:
+          <span class="memo">False — Stacks are LIFO.</span>
+        </li>
+        <br /><br />
+        <li>
+          Binary search requires sorted data. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Graphs can only be traversed using BFS. <br />Answer:
+          <span class="memo">False — BFS and DFS both apply.</span>
+        </li>
+        <li>
+          AVL trees guarantee O(log n) search. <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Hashing always avoids collisions. <br />Answer:
+          <span class="memo"
+            >False — collisions resolved via chaining/open addressing.</span
+          >
+        </li>
+        <li>
+          Arrays are dynamic in size. <br />Answer:
+          <span class="memo">False — fixed size.</span>
+        </li>
+        <li>
+          Queue operations Enqueue/Dequeue are O(1). <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          DFS uses a queue. <br />Answer:
+          <span class="memo">False — DFS uses stack/recursion.</span>
+        </li>
+        <li>
+          Merge sort worst case is O(n log n). <br />Answer:
+          <span class="memo">True.</span>
+        </li>
+        <li>
+          Warshall’s algorithm finds shortest path. <br />Answer:
+          <span class="memo">False — it finds transitive closure.</span>
+        </li>
+      </ol>
+
+      <h2>Section B: Pseudocode [40]</h2>
+      <ol>
+        <li>
+          Insert into a sorted linked list. <br />Answer:
+          <span class="memo"
+            >Traverse until correct spot → Insert → Return.</span
+          >
+        </li>
+        <li>
+          Bubble Sort for A = [4, 2, 5, 1]. <br />Answer:
+          <span class="memo">Swap adjacent until sorted → [1, 2, 4, 5].</span>
+        </li>
+        <li>
+          Queue Enqueue operation. <br />Answer:
+          <span class="memo">Check overflow → Rear++ → Insert item.</span>
+        </li>
+        <li>
+          Queue Dequeue operation. <br />Answer:
+          <span class="memo">Check underflow → Item = Front → Front++.</span>
+        </li>
+        <li>
+          Traverse array A[L..U]. <br />Answer:
+          <span class="memo">For i = L to U → Process(A[i]).</span>
+        </li>
+        <li>
+          DFS traversal. <br />Answer:
+          <span class="memo"
+            >Push start → While stack not empty → Pop → Visit → Push
+            neighbors.</span
+          >
+        </li>
+        <li>
+          BFS traversal. <br />Answer:
+          <span class="memo"
+            >Enqueue start → While queue not empty → Dequeue → Visit → Enqueue
+            neighbors.</span
+          >
+        </li>
+        <li>
+          Binary search. <br />Answer:
+          <span class="memo"
+            >Mid = (low+high)/2 → Compare → Adjust bounds → Repeat.</span
+          >
+        </li>
+      </ol>
+
+      <h2>Section C: Explanations [40]</h2>
+      <ol>
+        <li>
+          Compare arrays vs linked lists. <br />Answer:
+          <span class="memo"
+            >Arrays fixed size, fast access; Linked lists dynamic, slower
+            access.</span
+          >
+        </li>
+        <li>
+          Explain BFS vs DFS. <br />Answer:
+          <span class="memo"
+            >BFS uses queue, level order; DFS uses stack/recursion, depth
+            order.</span
+          >
+        </li>
+        <li>
+          AVL rotations. <br />Answer:
+          <span class="memo">LL, RR, LR, RL rotations rebalance tree.</span>
+        </li>
+        <li>
+          Hashing vs searching. <br />Answer:
+          <span class="memo"
+            >Hashing O(1) average; Searching O(log n) or O(n).</span
+          >
+        </li>
+        <li>
+          Warshall vs Floyd-Warshall. <br />Answer:
+          <span class="memo"
+            >Warshall → transitive closure; Floyd-Warshall → shortest paths
+            O(n³).</span
+          >
+        </li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Timer logic
+      let timerInterval;
+      let totalSeconds = 7200; // 2 hours
+
+      function startTimer() {
+        if (!timerInterval) {
+          timerInterval = setInterval(updateTimer, 1000);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      function resetTimer() {
+        stopTimer();
+        totalSeconds = 7200;
+        document.getElementById("timer").textContent = formatTime(totalSeconds);
+      }
+
+      function updateTimer() {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          document.getElementById("timer").textContent =
+            formatTime(totalSeconds);
+        } else {
+          stopTimer();
+          alert("Time's up!");
+        }
+      }
+
+      function formatTime(seconds) {
+        let h = Math.floor(seconds / 3600);
+        let m = Math.floor((seconds % 3600) / 60);
+        let s = seconds % 60;
+        return `${String(h).padStart(2, "0")}:${String(m).padStart(
+          2,
+          "0"
+        )}:${String(s).padStart(2, "0")}`;
+      }
+    </script>
+  </body>
+</html>

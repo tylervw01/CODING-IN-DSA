@@ -143,6 +143,60 @@
         <strong>Exam Tip:</strong> Warshall is transitive closure, not shortest
         path.
       </p>
+
+      <!-- NEW APPENDIX -->
+      <h2>Unit 11: Core Pseudocode Appendix</h2>
+      <pre>
+PATTERN_MATCH(A, D)
+    FOR i ← 1 TO LENGTH(D) - LENGTH(A) + 1 DO
+        j ← 1
+        WHILE j ≤ LENGTH(A) AND A[j] = D[i + j - 1] DO
+            j ← j + 1
+        END WHILE
+        IF j > LENGTH(A) THEN
+            RETURN i
+        END IF
+    END FOR
+    RETURN -1
+END
+
+TRAVERSE_LIST(START)
+    IF START = NULL THEN
+        PRINT "Empty list"
+        EXIT
+    END IF
+    CURRENT ← START
+    WHILE CURRENT ≠ NULL DO
+        PROCESS(CURRENT.DATA)
+        CURRENT ← CURRENT.NEXT
+    END WHILE
+END
+
+ENQUEUE(QUEUE, ITEM)
+    IF REAR = SIZE THEN
+        PRINT "Overflow"
+        EXIT
+    END IF
+    REAR ← REAR + 1
+    QUEUE[REAR] ← ITEM
+END
+
+DEQUEUE(QUEUE)
+    IF FRONT > REAR THEN
+        PRINT "Underflow"
+        EXIT
+    END IF
+    ITEM ← QUEUE[FRONT]
+    FRONT ← FRONT + 1
+    RETURN ITEM
+END
+
+TRAVERSE_ARRAY(A, L, U)
+    FOR i ← L TO U DO
+        PROCESS(A[i])
+    END FOR
+END
+      </pre>
     </section>
 
     <footer>
