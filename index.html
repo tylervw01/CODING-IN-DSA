@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <hr />
     <header>
       <h1>DATA STRUCTURES & ALGORITHMS</h1>
       <nav>
@@ -20,27 +19,21 @@
         <a href="/Components/internationals/interExam.html">Internationals</a>
       </nav>
     </header>
-    <!--Make image clickable to link-->
-    <div
-      class="cover-container"
-      id="cover-container"
-      onclick=""
-      style="cursor: pointer"
-    >
+
+    <div class="cover-container" id="cover-container" style="cursor: pointer">
       <img
         src="/Assets/dsaCover.jpg"
         alt="DSA Cover"
         class="cover"
-        hrefLocation="/Components/textbook/book.html"
+        onclick="window.location.href='/Components/textbook/book.html'"
       />
-    </div>
-
-    <div class="pagination">
-      <a href="/Components/textbook/book.html">*TEXTBOOK*</a>
     </div>
 
     <div>
       <footer>
+        <div class="pagination">
+          <a href="/Components/textbook/book.html">*TEXTBOOK*</a>
+        </div>
         <p>&copy; 2025 CODING IN DSA. All rights reserved.</p>
       </footer>
     </div>
